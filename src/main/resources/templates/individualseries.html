@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="detalle">
+        <div class="producto_item_arriba">
+           <img src="peli3.jpg" alt="">
+        </div>
+        <div class="pelicula_item_abajo">
+            <h3 th:text="${serie.titulo}"></h3>
+            <p th:text="${serie.ano_estreno}"></p>
+            <p th:text="${serie.episodios} + ' Episodios'"></p>
+            <p th:text="'Reproducciones: ' + ${serie.reproducciones}"></p>
+        </div>
+    </div>
+    <a href="/">Volver al catálogo</a>
+    
+</body>
+</html>

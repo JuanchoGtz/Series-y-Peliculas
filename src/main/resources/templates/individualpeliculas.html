@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="detalle" th:each="pelicula : ${pelicula}">
+        <h1 th:text="${pelicula.titulo}"></h1>
+        <div class="producto_item_arriba">
+            <iframe width="560" height="315" th:src="${pelicula.video_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="pelicula_item_abajo">
+            <p th:text="${pelicula.ano_estreno}"></p>
+            <p th:text="${pelicula.duracion_texto}"></p>
+            <p th:text="'Reproducciones: ' + ${pelicula.reproducciones}"></p>
+        </div>
+    </div>
+    <a href="/">Volver al catálogo</a>
+</body>
+</html>

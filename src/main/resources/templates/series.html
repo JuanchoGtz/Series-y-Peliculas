@@ -26,6 +26,7 @@
     <h1>Catálogo de Series</h1>
     <div class="container_series">
         <div th:each="serie : ${series}">
+            <a th:href="@{|/Individualseries/${serie.serieId}|}">
                 <div class="producto_item_arriba">
                     <img th:src="${serie.imagen_url}">
                 </div>
@@ -35,6 +36,8 @@
                     <p th:text="${serie.episodios} + ' Episodios'"></p>
                     <p th:text="'Reproducciones: ' + ${serie.reproducciones}"></p>
                 </div>
+            </a>
+                
             </div>
         </div>
     </div>
