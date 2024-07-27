@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,15 +19,54 @@ public class InicioController {
     @Autowired
     private SeriesRepository seriesRepository;
 
+    
     @GetMapping("/")
-    public String inicio(Model model) {
-        List<Peliculas> peliculas = getPeliculas();
-        List<Series> series=getSeries();
-        model.addAttribute("series",series);
+    public String inicio(@RequestParam(value = "search", required = false) String search, Model model) {
+        List<Peliculas> peliculas;
+        List<Series> series;
+
+        if (search != null && !search.isEmpty()) {
+            peliculas = peliculasRepository.findByTituloContainingIgnoreCaseOrGeneroContainingIgnoreCase(search, search);
+            series = seriesRepository.findByTituloContainingIgnoreCaseOrGeneroContainingIgnoreCase(search, search);
+        } else {
+            peliculas = peliculasRepository.findAllByOrderByReproduccionesDesc();
+            series = seriesRepository.findAllByOrderByReproduccionesDesc();
+        }
+
+        model.addAttribute("series", series);
         model.addAttribute("peliculas", peliculas);
         return "index";
     }
+    @GetMapping("/Peliculas")
+    public String peliculas(@RequestParam(value = "search", required = false) String search, Model model) {
+        List<Peliculas> peliculas;
+        
 
+        if (search != null && !search.isEmpty()) {
+            peliculas = peliculasRepository.findByTituloContainingIgnoreCaseOrGeneroContainingIgnoreCase(search, search); 
+        } else {
+            peliculas = peliculasRepository.findAll();
+        }
+
+       
+        model.addAttribute("peliculas", peliculas);
+        return "peliculas";
+    }
+    @GetMapping("/Series")
+    public String series(@RequestParam(value = "search", required = false) String search, Model model) {
+        List<Series> series;
+        
+
+        if (search != null && !search.isEmpty()) {
+            series = seriesRepository.findByTituloContainingIgnoreCaseOrGeneroContainingIgnoreCase(search, search); 
+        } else {
+            series = seriesRepository.findAll();
+        }
+
+       
+        model.addAttribute("series", series);
+        return "series";
+    }
     private List<Series> getSeries() {
         return seriesRepository.findAll();
     }

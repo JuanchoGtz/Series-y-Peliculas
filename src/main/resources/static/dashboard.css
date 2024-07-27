@@ -60,13 +60,13 @@ body {
 .container{
     display: grid;
     grid-template-columns: repeat(5,auto);
-    width: 50%;
+    width: 100%;
     height: auto;
 }
 .container_series{
     display: grid;
     grid-template-columns: repeat(5,auto);
-    width: 50%;
+    width: 100%;
     height: auto;
 }
 .pelicula_item{

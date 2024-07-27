@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><img src="logo.png" width="50px" border-radius="4px"></div>
+        <div>
+            <a href="/">Home</a>
+            <a href="">Todo</a>
+            <a href="Peliculas">Películas</a>
+            <a href="Series">Series</a>
+        
+        </div>
+    </div>
+    <div class="search-bar">
+        <form action="Series" method="get">
+            <input type="text" name="search" placeholder="Buscar por nombre o género">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+    <h1>Catálogo de Series</h1>
+    <div class="container_series">
+        <div th:each="serie : ${series}">
+                <div class="producto_item_arriba">
+                    <img th:src="${serie.imagen_url}">
+                </div>
+                <div class="pelicula_item_abajo">
+                    <h3 th:text="${serie.titulo}"></h3>
+                    <p th:text="${serie.ano_estreno}"></p>
+                    <p th:text="${serie.episodios} + ' Episodios'"></p>
+                    <p th:text="'Reproducciones: ' + ${serie.reproducciones}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
