@@ -36,6 +36,7 @@ background: linear-gradient(90deg, rgba(7,7,7,1) 0%, rgba(45,43,43,1) 50%, rgba(
     <h1 th:text="${pelicula.titulo}"></h1>
     <div class="detalle" th:each="pelicula : ${pelicula}">
         <div class="producto_item_arriba">
+            <!--Esta es la API de Youtube-->
             <iframe width="1300" height="615" th:src="${pelicula.video_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="pelicula_item_abajo">
