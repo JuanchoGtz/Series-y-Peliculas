@@ -1,76 +1,165 @@
+/*Cuerpo general */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #121418;
-    color: aliceblue;
+    background: #121212;
+    color: white;
 }
+/*Barra de busqueda y barra de navegacion*/
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #121418;
-    padding: 15px;
-    color: aliceblue;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 40px;
+    margin: 20px auto;
+    width: fit-content;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #2e2e2e;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.search-bar input {
+    border: none;
+    background: none;
+    color: white;
+    padding: 10px;
+    outline: none;
+    border-radius: 20px;
+}
+
+.search-bar button {
+    border: none;
+    background-color: #3e3e3e;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #505050;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: transform 0.3s;
+}
+
+.nav-links a:hover {
+    transform: scale(1.1);
+    background-color: #2e2e2e;
+    color: #cc4bbf;
+}
+/*Carrusel de imagenes*/
+
+.carousel-container {
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:  rgba(0, 0, 0, 0.6) ; 
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+}
+.carousel-container img{
+    width: 450px;
+}
+
+.carousel-item {
+    max-width: 100%;
+    display: none;
+    border-radius: 20px;
+}
+
+.carousel-item:first-child {
+    display: block;
     
 }
-.navbar a {
-    color: aliceblue;
-    text-decoration: none;
-    margin: 0 15px;
-}
-.navbar a:hover {
-    background-color: aliceblue;
-    color: #121418;
-}
-.carousel {
-    position: relative;
-    max-width: 25%;
-    margin: auto;
-    overflow: hidden;
-}
-.carousel img {
-    width: 100%;
-    display: none;
-}
-.carousel img.active {
-    display: block;
-}
+
 .prev, .next {
     cursor: pointer;
     position: absolute;
     top: 50%;
     width: auto;
-    padding: 16px;
     margin-top: -22px;
+    padding: 16px;
     color: white;
     font-weight: bold;
     font-size: 18px;
     transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
+    border-radius: 50%;
     user-select: none;
+    
 }
+
+.prev {
+    left: 0;
+    border-radius: 50%;
+}
+
 .next {
     right: 0;
-    border-radius: 3px 0 0 3px;
+    border-radius: 50%;
 }
+
 .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.8);
 }
+/*Contenedor de peliculas*/
 .container{
     display: grid;
     grid-template-columns: repeat(5,auto);
     width: 100%;
     height: auto;
+    
 }
+.rounded-image {
+    border-radius: 15px; 
+}
+.container a{
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    transition: transform 0.3s ease; 
+}
+.container a:hover{
+    transform: scale(1.1);
+}
+/*Contenedor de series*/
 .container_series{
     display: grid;
     grid-template-columns: repeat(5,auto);
     width: 100%;
     height: auto;
 }
+.container_series a{
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    transition: transform 0.3s ease; 
+}
+.container_series a:hover{
+    transform: scale(1.1);
+}
+/*Configuracion general para items y peliculas*/
 .pelicula_item{
-   border: solid 1px #121418;
    border-radius: 6px;
    margin: 15px;
    padding: 0;

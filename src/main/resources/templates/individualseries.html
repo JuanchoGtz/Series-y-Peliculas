@@ -3,16 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Serie</title>
+    <style>
+         body{
+        background: rgb(7,7,7);
+        background: linear-gradient(90deg, rgba(7,7,7,1) 0%, rgba(45,43,43,1) 50%, rgba(50,48,48,1) 72%, rgba(82,0,66,1) 85%, rgba(82,0,57,1) 100%);
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        font-size: 18px;
+        color: white;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        a:hover{
+            color: #cc4bbf;
+            background-color: #2e2e2e;
+            transform: scale(1.1);
+        }
+        .pelicula_item_abajo{
+            
+            border-radius: 18px;
+            padding: 20px;
+            max-width: 25%;
+            text-align: justify;
+        }
+    </style>
 </head>
 <body>
+    <h1 th:text="${serie.titulo}"></h1>
     <div class="detalle">
         <div class="producto_item_arriba">
-           <img src="peli3.jpg" alt="">
+            <iframe width="1300" height="615" th:src="${serie.video_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="pelicula_item_abajo">
-            <h3 th:text="${serie.titulo}"></h3>
             <p th:text="${serie.ano_estreno}"></p>
+            <p th:text="${serie.protagonistas}"></p>
+            <p th:text="${serie.genero}"></p>
             <p th:text="${serie.episodios} + ' Episodios'"></p>
             <p th:text="'Reproducciones: ' + ${serie.reproducciones}"></p>
         </div>

@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Catalogo Peliculas</title>
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
+    <!-- Barra de busqueda y de opciones-->
     <div class="navbar">
-        <div class="logo"><img src="logo.png" width="50px" border-radius="4px"></div>
-        <div>
+        <div class="search-bar">
+            <form action="Peliculas" method="get">
+                <input type="text" name="search" placeholder="Buscar por nombre o género">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        
+        <div class="nav-links">
             <a href="/">Home</a>
-            <a href="">Todo</a>
             <a href="Peliculas">Películas</a>
             <a href="Series">Series</a>
-        
         </div>
-    </div>
-    <div class="search-bar">
-        <form action="Peliculas" method="get">
-            <input type="text" name="search" placeholder="Buscar por nombre o género">
-            <button type="submit">Buscar</button>
-        </form>
     </div>
     <h1>Catálogo de Películas</h1>
     <div class="container">
@@ -34,6 +33,7 @@
                     <h3 th:text="${pelicula.titulo}"></h3>
                     <p th:text="${pelicula.ano_estreno}"></p>
                     <p th:text="${pelicula.duracion_texto}"></p>
+                    <p th:text="${pelicula.genero}"></p>
                     <p th:text="'Reproducciones: ' + ${pelicula.reproducciones}"></p>
                 </div>
             </a>     

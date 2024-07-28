@@ -3,84 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
 </head>
-<body>
+<body  >
+    <!-- Barra de busqueda y de opciones-->
     <div class="navbar">
-        <div class="logo"><img src="logo.png" width="50px" border-radius="4px"></div>
-        <div>
+        <div class="search-bar">
+            <form action="/" method="get">
+                <input type="text" name="search" placeholder="Buscar por nombre o género">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        
+        <div class="nav-links">
             <a href="/">Home</a>
-            <a href="">Todo</a>
             <a href="Peliculas">Películas</a>
             <a href="Series">Series</a>
-        
         </div>
     </div>
-    <div class="search-bar">
-        <form action="/" method="get">
-            <input type="text" name="search" placeholder="Buscar por nombre o género">
-            <button type="submit">Buscar</button>
-        </form>
+    <!--Carrusel de imagenes-->
+    <div class="carousel-background">
+        <div class="carousel-container">
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <div class="carousel" th:each="pelicula, iterStat : ${peliculas}">
+                <a th:href="@{|/Individualpeliculas/${pelicula.peliculaId}|}">
+                    <img class="carousel-item" th:src="${pelicula.imagen_url}">
+                </a>
+            </div>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
     </div>
-    <div class="carousel" th:each="pelicula, iterStat : ${peliculas}">
-        <img class="active" th:src="${pelicula.imagen_url}">
-        <a class="prev" onclick="changeSlide(-2)">&#10094;</a>
-        <a class="next" onclick="changeSlide(2)">&#10095;</a>
-    </div> 
-    <h1>Top 5 de peliculas</h1>
+
+<!--Iconos de peliculas-->
+<h1>Top 5 de peliculas</h1>
 <div class="container">
     <div th:each="pelicula, iterStat : ${peliculas}">
         <div th:if="${iterStat.index < 5}" class="pelicula_item">
             <a th:href="@{|/Individualpeliculas/${pelicula.peliculaId}|}">
                 <div class="producto_item_arriba">
-                    <img th:src="${pelicula.imagen_url}">
+                    <img th:src="${pelicula.imagen_url}" class="rounded-image">
                 </div>
                 <div class="pelicula_item_abajo">
                     <h3 th:text="${pelicula.titulo}"></h3>
                     <p th:text="${pelicula.ano_estreno}"></p>
                     <p th:text="${pelicula.duracion_texto}"></p>
+                    <p th:text="${pelicula.genero}"></p>
                     <p th:text="'Reproducciones: ' + ${pelicula.reproducciones}"></p>
                 </div>
             </a>
         </div>
     </div>
 </div>
-<h1>Catálogo de Series</h1>
+<!--Iconos de series-->
+<h1>Top 5 Series</h1>
 <div class="container_series">
     <div th:each="serie, iterStat : ${series}">
         <div th:if="${iterStat.index < 5}" class="pelicula_item">
             <a th:href="@{|/Individualseries/${serie.serieId}|}">
                 <div class="producto_item_arriba">
-                    <img th:src="${serie.imagen_url}">
+                    <img th:src="${serie.imagen_url}" class="rounded-image">
                 </div>
                 <div class="pelicula_item_abajo">
                     <h3 th:text="${serie.titulo}"></h3>
                     <p th:text="${serie.ano_estreno}"></p>
                     <p th:text="${serie.episodios} + ' Episodios'"></p>
+                    <p th:text="${serie.genero}"></p>
                     <p th:text="'Reproducciones: ' + ${serie.reproducciones}"></p>
                 </div>
             </a>
         </div>
     </div>
 </div>
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel img');
-    
-        function showSlide(index) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (index + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-    
-        function changeSlide(n) {
-            showSlide(currentSlide + n);
-        }
-    
-        setInterval(() => {
-            changeSlide(1);
-        }, 3000); // Cambia de imagen cada 3 segundos
-    </script>
+
+<!--Script para el carrusel de imagenes-->
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+    const background = document.querySelector('.carousel-background');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.display = (i === index) ? 'block' : 'none';
+            if (i === index) {
+                background.style.backgroundImage = `url(${slide.src})`;
+            }
+        });
+    }
+
+    function changeSlide(n) {
+        currentSlide = (currentSlide + n + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    showSlide(currentSlide);
+    setInterval(() => {
+    changeSlide(1);
+}, 3000);
+</script>
     </body>
 </html>
